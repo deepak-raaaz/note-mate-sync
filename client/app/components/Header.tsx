@@ -10,11 +10,11 @@ import SignUp from "./Auth/SignUp";
 import Verification from "./Auth/Verification";
 import { HiOutlineUserCircle } from "react-icons/hi2";
 import { useSelector } from "react-redux";
-import Image from "next/image";
-import Avatar from "../../public/assets/images/user-avatar.png";
+import AvatarDefault from "../../public/assets/images/user-avatar.png";
 import { useSession } from "next-auth/react";
 import { useSocialAuthMutation } from "@/redux/features/auth/authApi";
 import { toast } from "react-hot-toast";
+import {Avatar} from "@nextui-org/react";
 
 type Props = {
   open: boolean;
@@ -65,6 +65,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
     }
   };
 
+  
   return (
     <div className="w-full relative">
       <div
@@ -97,11 +98,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
               </div>
               {user ? (
                 <Link href={"/profile"}>
-                  <Image
-                    src={user.avatar ? user.avatar : Avatar}
-                    alt=""
-                    className="w-[30px] h-[30px] rounded-full cursor-pointer"
-                  />
+                  <Avatar src={user.avatar === undefined ? AvatarDefault.src  : user.avatar.url || user.avatar} className="cursor-pointer hidden 800px:block"/>
                 </Link>
               ) : (
                 <HiOutlineUserCircle

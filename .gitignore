@@ -10,7 +10,7 @@
 /coverage
 
 # next.js
-/.next/
+.next/
 /out/
 
 # production
@@ -27,6 +27,11 @@ yarn-error.log*
 
 # local env files
 .env*.local
+client/.env
+server/.env
+*.env.example
+*.env.local
+*.env.staging
 
 # vercel
 .vercel
@@ -34,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Dependency directories
+node_modules/
+
+# Optional npm cache directory
+.npm
+
+# dotenv environment variables file
+.env

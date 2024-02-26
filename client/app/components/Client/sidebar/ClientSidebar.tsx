@@ -22,6 +22,9 @@ import { CiBookmark } from "react-icons/ci";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { ProfileBadges } from "./ProfileBadges";
+import { NotificationBox } from "./NotificationBox";
+import { AddBox } from "./AddBox";
 
 interface Props {
   component: any;
@@ -91,10 +94,15 @@ const SideNavbar: FC<Props> = ({ component }) => {
                     NMS
                   </Link>
                 </div>
+                <div className="ms-40 max-md:ms-0">
+
+                <AddBox/>
+                </div>
               </div>
               <div className="flex items-center">
-                <div className="flex">
-                  
+                <div className="flex space-x-6">
+                  <NotificationBox/>
+                  <ProfileBadges/>
                 </div>
               </div>
             </div>
@@ -112,8 +120,8 @@ const SideNavbar: FC<Props> = ({ component }) => {
             onBackdropClick={() => setToggled(false)}
             onBreakPoint={setBroken}
             breakPoint="md"
-            backgroundColor="tranparent"
-            className="h-full !fixed"
+            backgroundColor={theme === "light" ? "white" : "transparent"}
+            className="h-full !fixed border-r-2"
           >
             <div
               style={{
