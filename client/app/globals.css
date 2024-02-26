@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --backgrouond-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root{
+        --foreground-rgb: 255, 255, 255;
+        --background-start-rgb: 0, 0, 0;
+        --backgrouond-end-rgb: 0, 0, 0;
+    }
+}
+
+body{
+    color: rgb(var(--foreground-rgb));
+}
+
+.title{
+    @apply text-[25px] text-black dark:text-white font-[500] font-Poppins text-center py-2
+}
+.label{
+    @apply text-[16px] font-Poppins text-black dark:text-white
+}
+.input{
+    @apply w-full text-black dark:text-white bg-transparent border rounded h-[40px] px-2 outline-none mt-[10px] font-Poppins
+}
+.button{
+    @apply flex flex-row justify-center items-center py-3 rounded-full cursor-pointer bg-[#2190ff] min-h-[45px] w-full text-[16px] font-Poppins font-semibold
+}
+.ps-menu-button{
+    @apply hover:!bg-[#00000015] dark:hover:!bg-[#ffffff13] !font-[500]
+}
+.ps-submenu-expand-icon span{
+    @apply h-2 w-2
+}
+.ps-sidebar-root{
+    @apply !border-r-2 !border-[#ffffff11]
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
