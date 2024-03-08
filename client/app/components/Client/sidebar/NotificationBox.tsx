@@ -22,10 +22,9 @@ const iconClasses =
   "text-2xl text-default-500 pointer-events-none flex-shrink-0";
 
 export const NotificationBox = () => {
-  const { user } = useSelector((state: any) => state.auth);
 
   return (
-    <Dropdown className="shadow-xl" placement="bottom">
+    <Dropdown className="shadow-xl dark:bg-slate-900" placement="bottom">
       <DropdownTrigger>
         <Button isIconOnly aria-label="Take a photo" className="bg-transparent">
           <IoNotifications className="text-slate-800 dark:text-slate-300" size={25} />

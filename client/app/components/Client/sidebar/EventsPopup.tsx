@@ -16,19 +16,18 @@ import {
   
   import clsx from "clsx";
   import { useSelector } from "react-redux";
-  import { IoNotifications } from "react-icons/io5";
-  
+  import { BiSolidCalendarEvent } from "react-icons/bi";
+
+
   const iconClasses =
     "text-2xl text-default-500 pointer-events-none flex-shrink-0";
   
-  export const AddBox = () => {
-    const { user } = useSelector((state: any) => state.auth);
-  
+  export const EventsPopup = () => {
     return (
-      <Dropdown className="shadow-xl" placement="bottom">
+      <Dropdown className="shadow-xl dark:bg-slate-900" placement="bottom">
         <DropdownTrigger>
-          <Button isIconOnly aria-label="Take a photo" className="bg-transparent">
-            <IoNotifications className="text-slate-800 dark:text-slate-300" size={25} />
+          <Button aria-label="Take a photo" className="bg-transparent font-semibold text-slate-700 dark:text-slate-300" startContent={<BiSolidCalendarEvent className="" size={24} />}>
+            Events
           </Button>
         </DropdownTrigger>
         <DropdownMenu
@@ -37,7 +36,7 @@ import {
           color="default"
           variant="flat"
         >
-          <DropdownSection title="Notifications">
+          <DropdownSection title="Events">
             <DropdownItem
               key="new"
               description="Create a new file"

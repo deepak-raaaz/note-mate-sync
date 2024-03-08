@@ -17,6 +17,12 @@
           "-moz-appearance"
         ]
       }
+    ],
+    "axe/structure": [
+      "default",
+      {
+        "list": "off"
+      }
     ]
   }
 }

@@ -8,7 +8,7 @@ import { Providers } from "./Provider";
 import { SessionProvider } from "next-auth/react";
 import { useLoadUserQuery } from "@/redux/features/api/apiSlice";
 import React from "react";
-import Loader from "./components/Loader/Loader"
+import Loader from "./components/Loader/Loader";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.variable} ${josefin.variable} text-black dark:text-white !bg-slate-100 bg-gradient-to-b bg-no-repeat dark:bg-gradient-to-b dark:from-gray-900 dark:to-black duration-300`}
+        className={`${poppins.variable} ${josefin.variable} font-Poppins text-black dark:text-white !bg-slate-100 bg-gradient-to-b bg-no-repeat dark:bg-gradient-to-b dark:from-gray-900 dark:to-black duration-300`}
       >
         <Providers>
           <SessionProvider>
@@ -45,13 +45,7 @@ export default function RootLayout({
   );
 }
 
-const Custom: React.FC<{children: React.ReactNode}> = ({children}) => {
-  const {isLoading} = useLoadUserQuery({});
-  return (
-    <>
-      {
-        isLoading? <Loader/> :<>{children}</>
-      }
-    </>
-  )
-}
+const Custom: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { isLoading } = useLoadUserQuery({});
+  return <>{isLoading ? <Loader /> : <>{children}</>}</>;
+};

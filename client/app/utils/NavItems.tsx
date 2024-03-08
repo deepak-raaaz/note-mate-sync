@@ -3,7 +3,7 @@ import React from "react";
 export const navItemsData = [
   {
     name: "Home",
-    url: "/",
+    url: "/home",
   },
   {
     name: "Features",

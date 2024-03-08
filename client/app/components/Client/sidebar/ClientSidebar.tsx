@@ -24,12 +24,17 @@ import Link from "next/link";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ProfileBadges } from "./ProfileBadges";
 import { NotificationBox } from "./NotificationBox";
-import { AddBox } from "./AddBox";
+import { AddPopup } from "./AddPopup";
+import { Button } from "@nextui-org/react";
+import { BsCalendarEventFill } from "react-icons/bs";
+import { EventsPopup } from "./EventsPopup";
+import { ThemeSwitcher } from "@/app/utils/ThemeSwitcher";
+import BottomNavigation from "../bottomNavigation/BottomNavigation";
 
 interface Props {
-  component: any;
+  children: any;
 }
-const SideNavbar: FC<Props> = ({ component }) => {
+const SideNavbar: FC<Props> = ({ children }) => {
   const [collapsed, setCollapsed] = React.useState(false);
   const [toggled, setToggled] = React.useState(false);
   const [broken, setBroken] = React.useState(false);
@@ -71,9 +76,9 @@ const SideNavbar: FC<Props> = ({ component }) => {
   return (
     <div className="flex h-screen">
       {/* Fixed Header */}
-      <header className="w-full text-white fixed top-0 left-0 z-80">
+      <header className="w-full text-white fixed top-0 left-0 z-[100]">
         {/* header  */}
-        <div className=" dark:bg-opacity-50 bg-white dark:bg-gradient-to-b  dark:from-gray-900 dark:to-black w-full h-[70px] x-[80] border-0 dark:border-[#ffffff1c] shadow-md transition duration-500 px-5">
+        <div className=" dark:bg-opacity-50 bg-white dark:bg-gradient-to-b  dark:from-gray-900 dark:to-black w-full h-[70px] x-[80] border-b-1 border-slate-200 dark:border-[#ffffff1c]  transition duration-500 px-5 max-sm:px-1">
           <div className="w-full m-auto h-full ">
             <div className="w-full h-[70px] flex items-center justify-between p-3">
               <div className="flex items-center h-full">
@@ -94,15 +99,18 @@ const SideNavbar: FC<Props> = ({ component }) => {
                     NMS
                   </Link>
                 </div>
-                <div className="ms-40 max-md:ms-0">
-
-                <AddBox/>
+                <div className="ms-36 max-md:ms-0 items-center space-x-8 max-sm:hidden">
+                  <AddPopup />
+                  <EventsPopup />
                 </div>
               </div>
               <div className="flex items-center">
-                <div className="flex space-x-6">
-                  <NotificationBox/>
-                  <ProfileBadges/>
+                <div className="flex space-x-5 max-sm:space-x-3 items-center">
+                  <ThemeSwitcher />
+                  <div className="max-sm:hidden">
+                    <NotificationBox />
+                  </div>
+                  <ProfileBadges />
                 </div>
               </div>
             </div>
@@ -121,7 +129,7 @@ const SideNavbar: FC<Props> = ({ component }) => {
             onBreakPoint={setBroken}
             breakPoint="md"
             backgroundColor={theme === "light" ? "white" : "transparent"}
-            className="h-full !fixed border-r-2"
+            className={`h-full !fixed border-r-1 border-slate-400  dark:bg-gradient-to-b  dark:from-gray-900 dark:to-black }`}
           >
             <div
               style={{
@@ -237,8 +245,9 @@ const SideNavbar: FC<Props> = ({ component }) => {
           collapsed ? "ml-[5.5rem]" : "ml-64"
         }  max-md:ml-0 pt-[5.5rem] text-black duration-300`}
       >
-        <main className="">{component}</main>
+        <main className="max-w-[1300px] mx-auto">{children}</main>
       </div>
+      <BottomNavigation />
     </div>
   );
 };

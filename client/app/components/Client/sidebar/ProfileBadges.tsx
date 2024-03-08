@@ -29,11 +29,11 @@ export const ProfileBadges = () => {
   const { user } = useSelector((state: any) => state.auth);
 
   return (
-    <Dropdown className="shadow-xl" placement="bottom">
+    <Dropdown className="shadow-xl dark:bg-slate-900" placement="bottom">
       <DropdownTrigger>
       <User  
-      name={user.name || 'Name'}
-      description={user.email}
+      name=''
+      description=''
       avatarProps={{
         src:  user.avatar === undefined ? AvatarDefault.src  : user.avatar.url || user.avatar
       }}
