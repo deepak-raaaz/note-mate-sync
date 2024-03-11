@@ -7,7 +7,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "@nextui-org/react";
-import React from "react";
+import React, { useState } from "react";
 import { IoIosMore } from "react-icons/io";
 import { FaRepeat } from "react-icons/fa6";
 import { IoIosShareAlt } from "react-icons/io";
@@ -16,11 +16,19 @@ import { IoHeart } from "react-icons/io5";
 import { AiOutlineComment } from "react-icons/ai";
 import Image from "next/image";
 import ThumbnailImage from "../../../public/assets/images/thumbnail-pdf.png";
+import Comment from "../Client/comment/Comment";
+import CommentModel from "../Client/comment/CommentModel";
+import { ModalDialogProps } from "@mui/joy";
 
 type Props = {};
 
 const NotesCard = (props: Props) => {
-  const [like, setLike] = React.useState(false);
+  const [like, setLike] = useState(false);
+  const [route, setRoute] = useState("");
+  const [layout, setLayout] = React.useState<ModalDialogProps['layout'] | undefined>(
+    undefined,
+  );
+  const [activeItem, setActiveItem] = useState(0);
 
   return (
     <div className="p-3 bg-white dark:bg-slate-900 rounded-lg overflow-hidden space-y-3">
@@ -107,13 +115,21 @@ const NotesCard = (props: Props) => {
       <div className="flex space-x-2 justify-between items-center">
         <div className="flex space-x-2 items-center">
           <Button
-            onClick={()=> {setLike(!like)}}
-            startContent={<IoHeart className={`${like ? 'text-red-600' : 'text-slate-400'}`} size={20} />}
+            onClick={() => {
+              setLike(!like);
+            }}
+            startContent={
+              <IoHeart
+                className={`${like ? "text-red-600" : "text-slate-400"}`}
+                size={20}
+              />
+            }
             className="bg-slate-200 text-slate-600  dark:bg-slate-800 dark:text-slate-300 rounded-full"
           >
             12.2k
           </Button>
           <Button
+          onClick={()=>{setRoute("comment"); setLayout('center');}}
             startContent={
               <AiOutlineComment
                 className="text-slate-600 dark:text-slate-300"
@@ -147,6 +163,20 @@ const NotesCard = (props: Props) => {
           </AvatarGroup>
         </div>
       </div>
+      {route === "comment" && (
+        <>
+          {layout && (
+            <CommentModel
+              layout={layout}
+              setLayout={setLayout}
+              setRoute={setRoute}
+              activeItem={activeItem}
+              component={Comment}
+              id={"commentid"}
+            />
+          )}
+        </>
+      )}
     </div>
   );
 };

@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 require("dotenv").config();
 import { ErrorMiddleware } from "./middleware/error";
 import userRouter from "./routes/user.route";
+import postRouter from "./routes/posts.route";
 
 // body parser
 app.use(express.json({ limit: "50mb" }));
@@ -22,6 +23,7 @@ app.use(
 
 // route
 app.use("/api/v1", userRouter);
+app.use("/api/v1", postRouter);
 
 //testing api
 app.get("/test", (req: Request, res: Response, next: NextFunction) => {

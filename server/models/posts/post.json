@@ -1,0 +1,110 @@
+{
+  "_id": "post id 1",
+  "user": {
+    "avatar": {
+      "public_id": "avatars/wdx6om6g1hfczloobvxa",
+      "url": "https://res.cloudinary.com/dxmvkaoql/image/upload/v1708943654/avatars/wdx6om6g1hfczloobvxa.png"
+    },
+    "_id": "65d702e2523908e94ea378c2",
+    "name": "Deepak kumar"
+  },
+  "captions": "This is the first caption of my post",
+  "likes": ["6147e1d117f0dc01322df502", "6147e1d117f0dc01322df503"],
+  "comments": [
+    {
+      "_id": "comment id 1",
+      "user": {
+        "avatar": {
+          "public_id": "avatars/wdx6om6g1hfczloobvxa",
+          "url": "https://res.cloudinary.com/dxmvkaoql/image/upload/v1708943654/avatars/wdx6om6g1hfczloobvxa.png"
+        },
+        "_id": "65d702e2523908e94ea378c2",
+        "name": "Deepak kumar"
+      },
+      "post": "post_id1",
+      "content": "This is my first comment on this post",
+      "likes": ["6147e1d117f0dc01322df502", "6147e1d117f0dc01322df503"],
+      "createdAt": "created time"
+    },
+    {
+      "_id": "comment id 2",
+      "user": {
+        "avatar": {
+          "public_id": "avatars/wdx6om6g1hfczloobvxa",
+          "url": "https://res.cloudinary.com/dxmvkaoql/image/upload/v1708943654/avatars/wdx6om6g1hfczloobvxa.png"
+        },
+        "_id": "65d702e2523908e94ea378c2",
+        "name": "Deepak kumar"
+      },
+      "post": "post_id1",
+      "content": "This is my second comment on this post",
+      "likes": [
+        "6147e1d117f0dc01322df502",
+        "6147e1d117f0dc01322df503",
+        "6147e1d117f0dc01322df503"
+      ],
+      "createdAt": "created time",
+      "commentReplies": [
+        {
+          "_id": "replies id 1",
+          "user": {
+            "avatar": {
+              "public_id": "avatars/wdx6om6g1hfczloobvxa",
+              "url": "https://res.cloudinary.com/dxmvkaoql/image/upload/v1708943654/avatars/wdx6om6g1hfczloobvxa.png"
+            },
+            "_id": "65d702e2523908e94ea378c2",
+            "name": "Deepak kumar"
+          },
+          "comment": "comment_id",
+          "content": "This is my second comment on this post",
+          "likes": [
+            "6147e1d117f0dc01322df502",
+            "6147e1d117f0dc01322df503",
+            "6147e1d117f0dc01322df503"
+          ],
+          "createdAt": "created time"
+        }
+      ]
+    }
+  ],
+  "shares": [
+    "6147e1d117f0dc01322df502",
+    "6147e1d117f0dc01322df503",
+    "6147e1d117f0dc01322df503"
+  ],
+  "saves": [
+    "6147e1d117f0dc01322df502",
+    "6147e1d117f0dc01322df503",
+    "6147e1d117f0dc01322df503"
+  ],
+  "downloads": [
+    "6147e1d117f0dc01322df502",
+    "6147e1d117f0dc01322df503",
+    "6147e1d117f0dc01322df503"
+  ],
+  "reposts": [
+    "6147e1d117f0dc01322df502",
+    "6147e1d117f0dc01322df503",
+    "6147e1d117f0dc01322df503"
+  ],
+  "tags": [
+    {
+      "_id": "tag id 1",
+      "tagName": "tag 1"
+    },
+    {
+      "_id": "tag id 2",
+      "tagName": "tag 2"
+    }
+  ],
+  "document": {
+    "thumbnail": {
+      "public_id": "public_id",
+      "url": "thumbnail_url"
+    },
+    "title": "title of document",
+    "pageCount": 12,
+    "size": "1024"
+  },
+  "createdAt": "post created time"
+}

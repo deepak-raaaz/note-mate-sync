@@ -48,6 +48,16 @@ body{
     @apply dark:text-white
 }
 
+/* Modal Styling  */
+.MuiModalDialog-root{
+    @apply dark:bg-slate-900 dark:border-slate-800
+}
+.MuiDialogTitle-root{
+    @apply dark:text-white
+}
+.MuiModalClose-root{
+    @apply dark:hover:bg-slate-700 dark:hover:text-white
+}
 
 
 input[type=number]::-webkit-inner-spin-button, 
