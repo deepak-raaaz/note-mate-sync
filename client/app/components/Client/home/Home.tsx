@@ -15,7 +15,7 @@ const Home:FC<Props> = () => {
     <div>
         <TopSwiper/>
         <WelcomeSection/>
-        <RecentlyViewd/>
+        {/* <RecentlyViewd/> */}
         <TopNotes/>
         <PeopleYouMayKnow/>
         <PopularCommunity/>

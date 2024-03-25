@@ -7,7 +7,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "@nextui-org/react";
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { IoIosMore } from "react-icons/io";
 import { FaRepeat } from "react-icons/fa6";
 import { IoIosShareAlt } from "react-icons/io";
@@ -19,16 +19,53 @@ import ThumbnailImage from "../../../public/assets/images/thumbnail-pdf.png";
 import Comment from "../Client/comment/Comment";
 import CommentModel from "../Client/comment/CommentModel";
 import { ModalDialogProps } from "@mui/joy";
+import moment from "moment";
+import { useSelector } from "react-redux";
 
-type Props = {};
+type Props = {
+  userId: string;
+  userName: string;
+  userAvatar: string;
+  createdAt: string;
+  captions: string;
+  likes: Array<string>;
+  comments: Array<string>;
+  downloads: Array<string>;
+  documentId: string;
+  documentTitle: string;
+  documentUrl: string;
+  documentPageCount: number;
+  documentSize: number;
+  documentFormat: string;
+  tags: Array<string>;
+};
 
-const NotesCard = (props: Props) => {
+const NotesCard: FC<Props> = ({
+  userId,
+  userName,
+  userAvatar,
+  createdAt,
+  captions,
+  likes,
+  comments,
+  downloads,
+  documentId,
+  documentTitle,
+  documentUrl,
+  documentPageCount,
+  documentSize,
+  documentFormat,
+  tags,
+}) => {
   const [like, setLike] = useState(false);
   const [route, setRoute] = useState("");
-  const [layout, setLayout] = React.useState<ModalDialogProps['layout'] | undefined>(
-    undefined,
-  );
+  const [layout, setLayout] = React.useState<
+    ModalDialogProps["layout"] | undefined
+  >(undefined);
   const [activeItem, setActiveItem] = useState(0);
+
+  const { user } = useSelector((state: any) => state.auth);
+
 
   return (
     <div className="p-3 bg-white dark:bg-slate-900 rounded-lg overflow-hidden space-y-3">
@@ -36,12 +73,16 @@ const NotesCard = (props: Props) => {
         <div className="flex items-center">
           <Avatar
             showFallback
-            src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
+            src={
+              userAvatar || "https://i.pravatar.cc/150?u=a042581f4e29026024d"
+            }
             size="md"
           />
           <div className="ms-2">
-            <h5 className="font-medium dark:text-slate-200">Deepak kumar</h5>
-            <span className="text-[14px] dark:text-slate-400">3 day ago</span>
+            <h5 className="font-medium dark:text-slate-200">{userName}</h5>
+            <span className="text-[14px] dark:text-slate-400">
+              {moment.utc(createdAt).local().startOf("seconds").fromNow()}
+            </span>
           </div>
         </div>
 
@@ -73,10 +114,10 @@ const NotesCard = (props: Props) => {
           />
           <div className="bg-slate-200 dark:bg-slate-800 absolute bottom-0 w-full px-3 py-2">
             <h5 className="line-clamp-1 dark:text-slate-300">
-              Lorem ipsum dolor sit amet.pdf
+              {documentTitle}.{documentFormat}
             </h5>
             <span className="text-sm dark:text-slate-400">
-              5 pages • 225 Kb
+              {documentPageCount} pages • {documentSize} Kb
             </span>
           </div>
         </div>
@@ -106,11 +147,7 @@ const NotesCard = (props: Props) => {
         </div>
       </div>
 
-      <p className="line-clamp-3 dark:text-slate-200">
-        Lorem ipsum dolor sit amet, consectet adipiscing elit. Aenean commodo
-        ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis
-        dis parturient montes, nascetur ridiculus
-      </p>
+      <p className="line-clamp-3 dark:text-slate-200">{captions}</p>
 
       <div className="flex space-x-2 justify-between items-center">
         <div className="flex space-x-2 items-center">
@@ -120,16 +157,19 @@ const NotesCard = (props: Props) => {
             }}
             startContent={
               <IoHeart
-                className={`${like ? "text-red-600" : "text-slate-400"}`}
+                className={`${likes.includes(user._id) ? "text-red-600" : "text-slate-400"}`}
                 size={20}
               />
             }
             className="bg-slate-200 text-slate-600  dark:bg-slate-800 dark:text-slate-300 rounded-full"
           >
-            12.2k
+            {likes.length}
           </Button>
           <Button
-          onClick={()=>{setRoute("comment"); setLayout('center');}}
+            onClick={() => {
+              setRoute("comment");
+              setLayout("center");
+            }}
             startContent={
               <AiOutlineComment
                 className="text-slate-600 dark:text-slate-300"
@@ -138,29 +178,33 @@ const NotesCard = (props: Props) => {
             }
             className="bg-slate-200 text-slate-600 rounded-full dark:bg-slate-800 dark:text-slate-300 "
           >
-            986
+            {comments.length}
           </Button>
         </div>
 
         <div>
-          <span className="text-tiny dark:text-slate-300">Downloads</span>
-          <AvatarGroup
-            max={3}
-            total={10}
-            renderCount={(count) => (
-              <p className="text-tiny text-foreground font-medium ms-2 ">
-                {count}+
-              </p>
-            )}
-            className="avatar-tiny"
-          >
-            <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
-            <Avatar src="https://i.pravatar.cc/150?u=a04258a2462d826712d" />
-            <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026704d" />
-            <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026302d" />
-            <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026702d" />
-            <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026708c" />
-          </AvatarGroup>
+          {downloads.length >= 4 && (
+            <>
+              <span className="text-tiny dark:text-slate-300">Downloads</span>
+              <AvatarGroup
+                max={3}
+                total={10}
+                renderCount={(count) => (
+                  <p className="text-tiny text-foreground font-medium ms-2 ">
+                    {downloads.length}+
+                  </p>
+                )}
+                className="avatar-tiny"
+              >
+                <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
+                <Avatar src="https://i.pravatar.cc/150?u=a04258a2462d826712d" />
+                <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026704d" />
+                <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026302d" />
+                <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026702d" />
+                <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026708c" />
+              </AvatarGroup>
+            </>
+          )}
         </div>
       </div>
       {route === "comment" && (
